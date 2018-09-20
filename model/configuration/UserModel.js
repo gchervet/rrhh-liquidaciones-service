@@ -19,17 +19,3 @@ exports.GetPasswordHashByUsername = function (username) {
         });
     });
 }
-
-exports.ChangePassword = function (username, newPassword) {
-    return new Promise(function (res, rej) {
-        connection.query("UPDATE `User` Set `Password` = '" + newPassword + "' WHERE Username = '" + username + "'", function (error, results, fields) {
-            if(!error){
-                res(true);
-            }
-            else
-            {
-                res(false);
-            }
-        });
-    });
-}

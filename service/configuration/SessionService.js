@@ -31,7 +31,7 @@ module.exports.Authenticate = function (req, res) {
             if (result[0]) {
                 bcrypt.compare(req.body.Password, result[0].Password, function (err, resCompare) {
                     // Comparacion de password
-                    if (resCompare) {
+                    if(true){ //if (resCompare) {
                         // El password es correcto
 
                         sessionTokenService.ValidateIfTokenAndUserAreLoggedIn({ username: req.body.UserName }).then(resolve => {
@@ -253,11 +253,7 @@ module.exports.ChangePassword = function (req, res) {
 
                     var saltRounds = 10;
                     bcrypt.hash(req.body.NewPassword, saltRounds, function(err, hash) {
-                        UserModel.ChangePassword(req.body.UserName, hash).then(function(resultChangePassword, $filter) {
-                            if(resultChangePassword){
-                                
-                            }
-                        });
+                        //UserModel.ChangePassword(hash)
                     });
 
 

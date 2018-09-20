@@ -1,5 +1,5 @@
-global.settings = require('../service/config/settings.json')
 var express = require('express');
+global.settings = require('../service/config/settings.json')
 global.app = express();  
 var server = require('http').createServer(app);  
 global.io = require('socket.io')(server);
@@ -51,12 +51,13 @@ var sessionController = require('./controllers/configuration/SessionController')
 var empleadoController = require('./controllers/business/EmpleadoController');
 var reciboController = require('./controllers/business/ReciboController');
 var ausentismoController = require('./controllers/business/AusentismoController');
+var sueldoController = require('./controllers/business/SueldoController');
 
 // Socket connection
 io.on('connection', function(socket){
     console.log('a user connected');
 });
-var port = normalizePort(process.env.port || 9009)
-server.listen(port, function(){
-    console.log("server running on port " + port);
+
+server.listen(9009, function(){
+    console.log("server running on port 9009");
 })  
