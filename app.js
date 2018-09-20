@@ -1,5 +1,5 @@
 var express = require('express');
-global.settings = require('../service/config/settings.json')
+global.settings = require('./config/settings.json')
 global.app = express();  
 var server = require('http').createServer(app);  
 global.io = require('socket.io')(server);
