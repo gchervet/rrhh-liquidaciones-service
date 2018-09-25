@@ -73,3 +73,50 @@ exports.GetEmpleadoNumber = function (search) {
       });
   });
 }
+
+exports.Create = function (empleado) {
+  console.log('Empleado/Create');
+  return new Promise(function (res, rej) {
+    connection.query(
+      "insert into remples (Codigo, Estado, nombre, rut, sexo, direccion, fono, fecha_nac, celular, est_civil, fecha_ing, numdoc, catego) " +
+      "VALUES('" + empleado.Legajo + "','A','" + empleado.Nombre + "','" + empleado.CUITCUIL + "','" + empleado.Sexo + "','" + empleado.Direccion + "','" + empleado.Telefono + "','" + empleado.FechaNacimiento+ "','" + empleado.Celular + "','" +empleado.EstadoCivil + "',NOW(),'" + empleado.Documento + "',1)",
+      function (error, results, fields) {
+        res(results);
+      });
+  });
+}
+
+exports.Update = function (empleado) {
+  console.log('Empleado/Update');
+  return new Promise(function (res, rej) {
+    connection.query(
+      "update remples " +
+      " Set Estado = 'A'" + 
+      ", nombre = '" + empleado.Nombre + 
+      "',rut = '" + empleado.CUITCUIL + 
+      "',sexo = '" + empleado.Sexo + 
+      "',direccion = '" + empleado.Direccion + 
+      "',fono = '" + empleado.Telefono + 
+      "',fecha_nac = '" + empleado.FechaNacimiento+ 
+      "',celular = '" + empleado.Celular + 
+      "',est_civil = '" +empleado.EstadoCivil + 
+      "',fecha_ing = NOW(), numdoc = '" + empleado.Documento +       
+      "',pmail = '" + empleado.EMail + 
+      "',catego = 1 " + 
+      " where Codigo = '" + empleado.Legajo + "'",
+      function (error, results, fields) {
+        res(results);
+      });
+  });
+}
+
+exports.Delete = function (empleado) {
+  console.log('Empleado/Delete');
+  return new Promise(function (res, rej) {
+    connection.query(
+      "SELECT count(*) EmpleadosNumber FROM remples WHERE estado = 'A'",
+      function (error, results, fields) {
+        res(results);
+      });
+  });
+}

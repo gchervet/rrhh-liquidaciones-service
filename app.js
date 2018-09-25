@@ -52,6 +52,8 @@ var empleadoController = require('./controllers/business/EmpleadoController');
 var reciboController = require('./controllers/business/ReciboController');
 var ausentismoController = require('./controllers/business/AusentismoController');
 var sueldoController = require('./controllers/business/SueldoController');
+var NovedadesController = require('./controllers/business/NovedadesController');
+var VacacionesController = require('./controllers/business/VacacionesController');
 
 // Socket connection
 io.on('connection', function(socket){

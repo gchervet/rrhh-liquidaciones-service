@@ -19,7 +19,6 @@ module.exports.GetAll = function (req, res) {
                         Telefono: element.Telefono,
                         Celular: element.Celular,
                         EstadoCivil: element.EstadoCivil,
-                        Email: element.Email,
                         DNI: element.DNI,
                         FechaIngreso: element.Fecha_ing,
                         CentroCosto: element.CentroCosto,
@@ -54,7 +53,7 @@ module.exports.GetByLegajoOrApellido = function (req, res) {
                         CUITCUIL: element.Rut,
                         Sexo: element.Sexo,
                         Direccion: element.Direccion,
-                        Telefono: element.Celular,
+                        Celular: element.Celular,
                         EstadoCivil: element.Est_civil,
                         Carnet: element.CARNET,
                         Estudios: element.Estudios,
@@ -63,6 +62,7 @@ module.exports.GetByLegajoOrApellido = function (req, res) {
                         Jornada: element.Jornada,
                         Jefe: element.Jefe,
                         NumeroFicha: element.NFicha,
+                        FechaNacimiento: element.Fecha_nac,
                         Nacio: element.Nacion,
                         DNI: element.Numdoc,
                         Ocupacion: element.Ocupacion,
@@ -72,7 +72,8 @@ module.exports.GetByLegajoOrApellido = function (req, res) {
                         FechaVacaciones: element.Fecha_vac,
                         Clase: element.Clase,
                         Telefono: element.Fono,
-                        Convenio: element.Convenio
+                        Convenio: element.Convenio,
+                        EMail: element.pmail
 
                     }
                     rtn.push(resultDTO);
@@ -123,4 +124,55 @@ module.exports.GetNombreAndLegajo = function (req, res) {
 
         res.json(rtn);
     });
+}
+
+module.exports.Create = function (req, res) {
+    try {
+        if (req.body.Data) {
+            if (req.body.Data.FechaNacimiento) {
+                req.body.Data.FechaNacimiento = req.body.Data.FechaNacimiento.replace('T', ' ');
+                req.body.Data.FechaNacimiento = req.body.Data.FechaNacimiento.replace('Z', '');
+            }
+            return EmpleadoModel.Create(req.body.Data).then(function (result, $filter) {
+                res.json(true);
+            });
+        }
+        else{
+            res.json(false);
+        }
+    }
+    catch (er) {
+        res.json(false);
+    }
+}
+
+module.exports.Update = function (req, res) {
+    try {
+        if (req.body.Data) {
+            if (req.body.Data.FechaNacimiento) {
+                req.body.Data.FechaNacimiento = req.body.Data.FechaNacimiento.replace('T', ' ');
+                req.body.Data.FechaNacimiento = req.body.Data.FechaNacimiento.replace('Z', '');
+            }
+            return EmpleadoModel.Update(req.body.Data).then(function (result, $filter) {
+                res.json(true);
+            });
+        }
+        else{
+            res.json(false);
+        }
+    }
+    catch (er) {
+        res.json(false);
+    }
+}
+
+module.exports.Delete = function (req, res) {
+    try {
+        return EmpleadoModel.Delete(req.body.empleado).then(function (result, $filter) {
+            res.json(true);
+        });
+    }
+    catch (er) {
+        res.json(false);
+    }
 }
