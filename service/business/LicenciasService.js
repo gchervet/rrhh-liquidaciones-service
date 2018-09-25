@@ -1,8 +1,8 @@
-var NovedadesModel = require('../../model/business/NovedadesModel');
+var LicenciasModel = require('../../model/business/LicenciasModel');
 
 module.exports.GetAll = function (req, res) {
 
-    return NovedadesModel.GetAll().then(function (result, $filter) {
+    return LicenciasModel.GetAll().then(function (result, $filter) {
 
         var rtn = [];
         if (result) {

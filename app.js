@@ -54,6 +54,7 @@ var ausentismoController = require('./controllers/business/AusentismoController'
 var sueldoController = require('./controllers/business/SueldoController');
 var NovedadesController = require('./controllers/business/NovedadesController');
 var VacacionesController = require('./controllers/business/VacacionesController');
+var LicenciasController = require('./controllers/business/LicenciasController');
 
 // Socket connection
 io.on('connection', function(socket){
