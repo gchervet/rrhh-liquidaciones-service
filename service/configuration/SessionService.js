@@ -31,7 +31,7 @@ module.exports.Authenticate = function (req, res) {
             if (result[0]) {
                 bcrypt.compare(req.body.Password, result[0].Password, function (err, resCompare) {
                     // Comparacion de password
-                    if(true){ //if (resCompare) {
+                    if (resCompare) {
                         // El password es correcto
 
                         sessionTokenService.ValidateIfTokenAndUserAreLoggedIn({ username: req.body.UserName }).then(resolve => {
